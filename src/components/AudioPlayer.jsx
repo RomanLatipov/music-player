@@ -52,11 +52,16 @@ export default function AudioPlayer() {
         const minutes = Math.floor(input / 60);
         const seconds = Math.floor(input % 60);
         if (seconds < 10) {
-            output.innerHTML = minutes + ":0" + seconds;
+            output(minutes + ":0" + seconds);
         }
         else {
-            output.innerHTML = minutes + ":" + seconds;
+            output(minutes + ":" + seconds);
         }
+    }
+    function timeupdate() {
+        const currentAudioTime = Math.floor(audio.currentTime);
+	    // const timePercentge = (currentAudioTime / audio.duration) * 100 + "%";
+        setTime(setCurrentTime, currentAudioTime);
     }
     
     return(<>
@@ -99,10 +104,11 @@ export default function AudioPlayer() {
             </div>
 	    </div>
 	<audio id="audio" onLoadedData={() => {
-        setTime(fullTime, audio.duration);
+        setTime(setEndTime, audio.duration);
 		document.querySelector("#slider").setAttribute("max", audio.duartion);
     }}
     onEnded={() => nextSong(index+1)}
+    onTimeUpdate={() => timeupdate()}
     >
 		<source src={`${musicArray[0]}.mp3`}></source> 
 	</audio>
