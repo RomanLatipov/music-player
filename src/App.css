@@ -4,7 +4,7 @@
 #root{
   display: grid;
   grid-template-columns: 20vw 80vw;
-  grid-template-rows: 10vh 80vh 10vh;
+  grid-template-rows: 10vh 75vh 15vh;
   grid-gap: 0px;
   background: linear-gradient(45deg, #000850 0%, #000320 100%), 
                 radial-gradient(100% 225% at 100% 0%, #FF6928 0%, #000000 100%), 
@@ -13,7 +13,7 @@
     background-blend-mode: screen, overlay, hard-light, normal;
 }
 #sidebar {
-  height: 90vh;
+  height: 85vh;
   width: 20vw;
 
   background: rgba(222, 235, 255, 0.13);
@@ -35,14 +35,17 @@
 }
 #main {
   background-color: blue;
-  height: 80vh;
+  height: 75vh;
   width: 80vw;
   grid-column: 2;
   grid-row: 2;
 }
 #bottom-bar{
+  padding: 0.5rem;
   background-color: green;
-  height: 10vh;
+  height: 15vh;
   width: 100vw;
   grid-row: 3;
+  display: flex;
+  justify-content: center;
 }
