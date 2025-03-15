@@ -1,11 +1,12 @@
 import "./AudioPlayer.css"
 import { useState } from "react";
 export default function AudioPlayer() {
-    
     const musicArray = ["Danger - 2241", "Adventure Club vs DallasK - Crash 2.0", "TheFatRat - Fly Away feat. Anjulie"];
     const [currentTime, setCurrentTime] = useState("0:00");
     const [endTime, setEndTime] = useState("0:00");
     const [slider, setSlider] = useState(0);
+    const [volume, setVolume] = useState(50);
+    const [volumeIcon, setVolumeIcon] = useState(`volume_down`);
     
     const [isPlaying, setPlaying] = useState(false);
     const [index, setIndex] = useState(0);
@@ -34,7 +35,6 @@ export default function AudioPlayer() {
     }
     function prevSong(songId) {
         if(songId < 0) {
-            setIndex(musicArray.length-1);
             songId = musicArray.length-1
         }
         setIndex(songId);
@@ -73,7 +73,7 @@ export default function AudioPlayer() {
         setTime(setCurrentTime, value);
         audio.currentTime = audio.duration * (value/100);
     }
-    
+
     return(<>
     	<div className="player">
             <div>
@@ -115,19 +115,35 @@ export default function AudioPlayer() {
                 </div>
                 <small class="fulltime">{endTime}</small>
             </div>
+            <div class="volume-slider">
+                <div class="volume-icon">
+                    <span class="material-symbols-outlined">
+                        {volumeIcon}
+                    </span>
+                </div>
+
+                <div>
+                    <input type="range" min="0" max="100" value={volume} class="slider" onInput={event => {
+                        setVolume(event.target.value);
+                        audio.volume = event.target.value/100;
+                        
+                    }}></input>
+                </div>
+		    </div>
 	    </div>
-	<audio id="audio" onLoadedData={() => {
-        setTime(setEndTime, audio.duration);
-    }}
-    onEnded={() => {
-        nextSong(index+1);
-        setSlider(0);
-    }}
-    onTimeUpdate={() => {
-        timeupdate();
-        setSlider((audio.currentTime / audio.duration) * 100);
-    }}>
-		<source src={`${musicArray[0]}.mp3`}></source> 
-	</audio>
+	
+        <audio id="audio" onLoadedData={() => {
+            setTime(setEndTime, audio.duration);
+        }}
+        onEnded={() => {
+            nextSong(index+1);
+            setSlider(0);
+        }}
+        onTimeUpdate={() => {
+            timeupdate();
+            setSlider((audio.currentTime / audio.duration) * 100);
+        }}>
+            <source src={`${musicArray[0]}.mp3`}></source> 
+        </audio>
     </>)
 }
