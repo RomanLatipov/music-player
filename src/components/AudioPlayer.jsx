@@ -65,6 +65,7 @@ export default function AudioPlayer() {
         setTime(setCurrentTime, currentAudioTime);
     }
     function customSlider(value) {
+        setSlider(value);
         const val = (value / audio.duration) * 100 + "%";
         // const time = (isNaN(audio.duration)) ? 0 : audio.duration * (value/100);
         // progress.style.width = val;
@@ -72,6 +73,10 @@ export default function AudioPlayer() {
         
         setTime(setCurrentTime, value);
         audio.currentTime = audio.duration * (value/100);
+    }
+    function customVolumeSlider(value) {
+        setVolume(value);
+        audio.volume = value/100;
     }
 
     return(<>
@@ -108,10 +113,7 @@ export default function AudioPlayer() {
                 </button>
                 <small class="time">{currentTime}</small>
                 <div id="slider">
-                    <input type="range" min="0" max="100" value={slider} onInput={event => {
-                        setSlider(event.target.value);
-                        customSlider(event.target.value);
-                    }}></input>
+                    <input type="range" min="0" max="100" value={slider} onInput={event => customSlider(event.target.value)}></input>
                 </div>
                 <small class="fulltime">{endTime}</small>
             </div>
@@ -123,11 +125,7 @@ export default function AudioPlayer() {
                 </div>
 
                 <div>
-                    <input type="range" min="0" max="100" value={volume} class="slider" onInput={event => {
-                        setVolume(event.target.value);
-                        audio.volume = event.target.value/100;
-                        
-                    }}></input>
+                    <input type="range" min="0" max="100" value={volume} class="slider" onInput={event => customVolumeSlider(event.target.value)}></input>
                 </div>
 		    </div>
 	    </div>
