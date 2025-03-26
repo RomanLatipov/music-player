@@ -7,13 +7,14 @@ export default function AudioPlayer() {
     const [slider, setSlider] = useState(0);
     const [volume, setVolume] = useState(50);
     const [volumeIcon, setVolumeIcon] = useState(`volume_down`);
+    const [volumeMuted, setVolumeMuted] = useState(false);
     
     const [isPlaying, setPlaying] = useState(false);
     const [index, setIndex] = useState(0);
     // const [src, setSrc] = useState(`../public/${musicArray[index]}.mp3`);
 
     function playSong() {
-        const audio = document.querySelector("#audio");
+        // const audio = document.querySelector("#audio");
         if(isPlaying === false) {
             audio.play();
             setPlaying(true);
@@ -29,7 +30,7 @@ export default function AudioPlayer() {
         }
     }
     function loadSong(songId) {
-        const audio = document.querySelector("#audio");
+        // const audio = document.querySelector("#audio");
         audio.src = `../${musicArray[songId]}.mp3`;
 	    audio.load();
     }
@@ -73,24 +74,28 @@ export default function AudioPlayer() {
     function customSlider(value) {
         setSlider(value);
         const val = (value / audio.duration) * 100 + "%";
-        const time = (isNaN(value)) ? 0 : audio.duration * (value/100);
+        // const time = (isNaN(value)) ? 0 : audio.duration * (value/100);
         // progress.style.width = val;
         // thumb.style.left = val;
         
         setTime(setCurrentTime, value);
-        audio.currentTime = time;
+        audio.currentTime = audio.duration * (value / 100);
     }
     function customVolumeSlider(value) {
-        setVolume(value);
         audio.volume = value/100;
+        console.log(value);
+        if (value > 50)
+            setVolumeIcon(`volume_up`)
+        else if (value == 0)
+            setVolumeIcon(`volume_off`)
+        else
+            setVolumeIcon(`volume_down`)
     }
 
     return(<>
     	<div className="player">
             <div>
-                <button onClick={() => {
-                    prevSong(index-1);
-                }}>
+                <button onClick={() => prevSong(index-1)}>
                     <span class="material-symbols-outlined">
                         fast_rewind
                     </span>
@@ -103,9 +108,7 @@ export default function AudioPlayer() {
                         play_arrow
                     </span>
                 </button>
-                <button onClick={() => {
-                    nextSong(index+1);
-                }}>
+                <button onClick={() => nextSong(index+1)}>
                     <span class="material-symbols-outlined">
                         fast_forward
                     </span>
@@ -124,27 +127,25 @@ export default function AudioPlayer() {
                 <small class="fulltime">{endTime}</small>
             </div>
             <div class="volume-slider">
-                <button class="volume-icon">
+                <button class="volume-icon" onClick={() => {
+                    setVolumeMuted(!volumeMuted);
+                    volumeMuted ? customVolumeSlider(volume) : customVolumeSlider(0);
+                }}>
                     <span class="material-symbols-outlined">
                         {volumeIcon}
                     </span>
                 </button>
 
                 <div>
-                    <input type="range" min="0" max="100" value={volume} class="slider" onInput={event => customVolumeSlider(event.target.value)}></input>
+                    <input type="range" min="0" max="100" value={volumeMuted ? 0 : volume} class="slider" onInput={event => {
+                        customVolumeSlider(event.target.value);
+                        setVolume(event.target.value);
+                    }}></input>
                 </div>
 		    </div>
 	    </div>
 	
-        <audio id="audio" onLoadedData={() => {
-            setTime(setEndTime, audio.duration);
-        }}
-        onEnded={() => {
-            nextSong(index+1);
-        }}
-        onTimeUpdate={() => {
-            timeupdate();
-        }}>
+        <audio id="audio" onLoadedData={() => setTime(setEndTime, audio.duration)} onEnded={() => nextSong(index+1)} onTimeUpdate={() => timeupdate()}>
             <source src={`${musicArray[0]}.mp3`}></source> 
         </audio>
     </>)
