@@ -2,20 +2,20 @@ import "./AudioPlayer.css"
 import { useState } from "react";
 export default function AudioPlayer() {
     const musicArray = ["Danger - 2241", "Adventure Club vs DallasK - Crash 2.0", "TheFatRat - Fly Away feat. Anjulie"];
+    const [isPlaying, setPlaying] = useState(false);
+    const [index, setIndex] = useState(0);
+
     const [currentTime, setCurrentTime] = useState("0:00");
     const [endTime, setEndTime] = useState("0:00");
     const [slider, setSlider] = useState(0);
     const [volume, setVolume] = useState(50);
     const [volumeIcon, setVolumeIcon] = useState(`volume_down`);
     const [volumeMuted, setVolumeMuted] = useState(false);
-    
-    const [isPlaying, setPlaying] = useState(false);
-    const [index, setIndex] = useState(0);
-    // const [src, setSrc] = useState(`../public/${musicArray[index]}.mp3`);
+    const [shuffle, setShuffle] = useState(false);
 
     function playSong() {
         // const audio = document.querySelector("#audio");
-        if(isPlaying === false) {
+        if (isPlaying === false) {
             audio.play();
             setPlaying(true);
         }
@@ -25,7 +25,7 @@ export default function AudioPlayer() {
         }
     }
     function switchTrack() {
-        if(isPlaying === true) {
+        if (isPlaying === true) {
             audio.play();
         }
     }
@@ -36,7 +36,7 @@ export default function AudioPlayer() {
     }
     function prevSong(songId) {
         setSlider(0);
-        if(songId < 0) {
+        if (songId < 0) {
             songId = musicArray.length-1
         }
         setIndex(songId);
@@ -45,9 +45,16 @@ export default function AudioPlayer() {
     }
     function nextSong(songId) {
         setSlider(0);
-        if(songId > musicArray.length-1) {
-            songId = 0;
+        if (shuffle) {
+            songId = Math.floor(Math.random() * musicArray.length);
         }
+        else {
+            if(songId > musicArray.length-1) {
+                songId = 0;
+            }
+        }
+        console.log(songId);
+        
         setIndex(songId);
         loadSong(songId);
         switchTrack();
@@ -55,20 +62,13 @@ export default function AudioPlayer() {
     function setTime(output, input) {
         const minutes = Math.floor(input / 60);
         const seconds = Math.floor(input % 60);
-        if (seconds < 10) {
-            output(minutes + ":0" + seconds);
-        }
-        else {
-            output(minutes + ":" + seconds);
-        }
+        (seconds < 10) ? output(minutes + ":0" + seconds) : output(minutes + ":" + seconds);
     }
     function timeupdate() {
         const currentAudioTime = Math.floor(audio.currentTime);
 	    // const timePercentge = (currentAudioTime / audio.duration) * 100 + "%";
         setTime(setCurrentTime, currentAudioTime);
         let time = audio.currentTime / audio.duration * 100;
-            // if (isNaN(time))
-            //     time = 0;
         setSlider((isNaN(time)) ? 0 : time);
     }
     function customSlider(value) {
@@ -83,13 +83,7 @@ export default function AudioPlayer() {
     }
     function customVolumeSlider(value) {
         audio.volume = value/100;
-        console.log(value);
-        if (value > 50)
-            setVolumeIcon(`volume_up`)
-        else if (value == 0)
-            setVolumeIcon(`volume_off`)
-        else
-            setVolumeIcon(`volume_down`)
+        (value > 50) ? setVolumeIcon(`volume_up`) : (value == 0) ? setVolumeIcon(`volume_off`) : setVolumeIcon(`volume_down`);            
     }
 
     return(<>
@@ -115,7 +109,7 @@ export default function AudioPlayer() {
                 </button>
             </div>
             <div id="inline">
-                <button>
+                <button onClick={() => setShuffle(!shuffle)}>
                     <span class="material-symbols-outlined">
                         shuffle
                     </span>
@@ -135,7 +129,6 @@ export default function AudioPlayer() {
                         {volumeIcon}
                     </span>
                 </button>
-
                 <div>
                     <input type="range" min="0" max="100" value={volumeMuted ? 0 : volume} class="slider" onInput={event => {
                         customVolumeSlider(event.target.value);
