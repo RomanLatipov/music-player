@@ -34,6 +34,7 @@ export default function AudioPlayer() {
 	    audio.load();
     }
     function prevSong(songId) {
+        setSlider(0);
         if(songId < 0) {
             songId = musicArray.length-1
         }
@@ -42,6 +43,7 @@ export default function AudioPlayer() {
         switchTrack();
     }
     function nextSong(songId) {
+        setSlider(0);
         if(songId > musicArray.length-1) {
             songId = 0;
         }
@@ -63,16 +65,20 @@ export default function AudioPlayer() {
         const currentAudioTime = Math.floor(audio.currentTime);
 	    // const timePercentge = (currentAudioTime / audio.duration) * 100 + "%";
         setTime(setCurrentTime, currentAudioTime);
+        let time = audio.currentTime / audio.duration * 100;
+            // if (isNaN(time))
+            //     time = 0;
+        setSlider((isNaN(time)) ? 0 : time);
     }
     function customSlider(value) {
         setSlider(value);
         const val = (value / audio.duration) * 100 + "%";
-        // const time = (isNaN(audio.duration)) ? 0 : audio.duration * (value/100);
+        const time = (isNaN(value)) ? 0 : audio.duration * (value/100);
         // progress.style.width = val;
         // thumb.style.left = val;
         
         setTime(setCurrentTime, value);
-        audio.currentTime = audio.duration * (value/100);
+        audio.currentTime = time;
     }
     function customVolumeSlider(value) {
         setVolume(value);
@@ -118,11 +124,11 @@ export default function AudioPlayer() {
                 <small class="fulltime">{endTime}</small>
             </div>
             <div class="volume-slider">
-                <div class="volume-icon">
+                <button class="volume-icon">
                     <span class="material-symbols-outlined">
                         {volumeIcon}
                     </span>
-                </div>
+                </button>
 
                 <div>
                     <input type="range" min="0" max="100" value={volume} class="slider" onInput={event => customVolumeSlider(event.target.value)}></input>
@@ -135,11 +141,9 @@ export default function AudioPlayer() {
         }}
         onEnded={() => {
             nextSong(index+1);
-            setSlider(0);
         }}
         onTimeUpdate={() => {
             timeupdate();
-            setSlider((audio.currentTime / audio.duration) * 100);
         }}>
             <source src={`${musicArray[0]}.mp3`}></source> 
         </audio>
