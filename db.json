@@ -1,0 +1,22 @@
+{
+    "songs": [
+        {
+            "id": 1,
+            "title": "Danger - 2241",
+            "artist": "Danger",
+            "album_cover": "" 
+        },
+        {
+            "id": 2,
+            "title": "Adventure Club vs DallasK - Crash 2.0",
+            "artist": "Adventure Club",
+            "album_cover": "" 
+        },
+        {
+            "id": 3,
+            "title": "TheFatRat - Fly Away feat. Anjulie",
+            "artist": "TheFatRat",
+            "album_cover": "" 
+        }
+    ]
+}
