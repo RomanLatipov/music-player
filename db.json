@@ -1,22 +1,39 @@
 {
-    "songs": [
+  "songs": [
+    {
+      "id": "1234",
+      "title": "Danger - 2241",
+      "artist": "Danger",
+      "album_cover": ""
+    },
+    {
+      "id": "5678",
+      "title": "Adventure Club vs DallasK - Crash 2.0",
+      "artist": "Adventure Club",
+      "album_cover": ""
+    },
+    {
+      "id": "abcd",
+      "title": "TheFatRat - Fly Away feat. Anjulie",
+      "artist": "TheFatRat",
+      "album_cover": ""
+    }
+  ],
+  "playlists": [
+    {
+      "id": "3931",
+      "new_playlist": [
         {
-            "id": 1,
-            "title": "Danger - 2241",
-            "artist": "Danger",
-            "album_cover": "" 
-        },
-        {
-            "id": 2,
-            "title": "Adventure Club vs DallasK - Crash 2.0",
-            "artist": "Adventure Club",
-            "album_cover": "" 
-        },
-        {
-            "id": 3,
-            "title": "TheFatRat - Fly Away feat. Anjulie",
-            "artist": "TheFatRat",
-            "album_cover": "" 
+            "song": "Danger - 2241"
         }
-    ]
+      ]
+    },
+    {
+      "id": "63ca",
+      "another playlist": [
+        {
+        }
+      ]
+    }
+  ]
 }

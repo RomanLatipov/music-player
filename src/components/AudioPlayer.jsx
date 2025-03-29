@@ -8,7 +8,6 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
     // const musicArray = ["Danger - 2241", "Adventure Club vs DallasK - Crash 2.0", "TheFatRat - Fly Away feat. Anjulie"];
     
     const [index, setIndex] = useState(0);
-
     const [currentTime, setCurrentTime] = useState("0:00");
     const [endTime, setEndTime] = useState("0:00");
     const [slider, setSlider] = useState(0);
@@ -35,7 +34,7 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
     }
     function loadSong(songId) {
         // const audio = document.querySelector("#audio");
-        audio.src = `../public/songs/${musicArray[songId]}.mp3`;
+        audio.src = `/songs/${musicArray[songId]}.mp3`;
 	    audio.load();
         switchTrack();
     }
@@ -91,7 +90,7 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
 
     return(<>
         <audio id="audio" onLoadedData={() => setTime(setEndTime, audio.duration)} onEnded={() => nextSong(index+1)} onTimeUpdate={() => timeupdate()}>
-            <source src={`../public/songs/${musicArray[0]}.mp3`}></source> 
+            <source src={`songs/${musicArray[0]}.mp3`}></source> 
         </audio>
     	<div className="player">
             <button onClick={() => prevSong(index-1)}>
