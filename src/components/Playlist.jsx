@@ -27,9 +27,11 @@ export default function Playlist() {
             .then( res => res.json() )
             .then(  )
     }
-    console.log(playlists[0]);
+    // console.log(playlists[0].new_playlist[0].song);
     return(<>
         <button onClick={() => handlePost(playlistName)}>Make Playlist</button>
         <input placeholder="Playlist name..." value={playlistName} onChange={event => setPlaylistName(event.target.value)}></input>
+        <b></b>
+        {/* {playlists} */}
     </>)
 }

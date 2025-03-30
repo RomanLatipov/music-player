@@ -1,22 +1,27 @@
-import './App.css'
-import AudioPlayer from './components/AudioPlayer'
-import Main from './components/Main'
-import Playlist from './components/Playlist'
-import { useEffect, useState } from 'react'
+import './App.css';
+import AudioPlayer from './components/AudioPlayer';
+import PrimaryDisplay from './components/PrimaryDisplay';
+import Playlist from './components/Playlist';
+import TempComp from './components/TempComp';
+import { useState } from 'react';
 
 function App() {
   const [currentSongs, setCurrentSong] = useState([]);
   const [srcChange, setSrcChange] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
+  const [homeOrPlaylist, setHomeOrPlaylist] = useState(true);
 
   return (
     <>
     <div id="sidebar">
-      <Playlist />
+      <button onClick={() => setHomeOrPlaylist(true)}>Home</button>
+      <button onClick={() => setHomeOrPlaylist(false)}>Playlists</button>
+      {/* <Playlist /> */}
     </div>
-    <div id="header"> </div>
-    <div id="main">
-      <Main songSetter={setCurrentSong} setSrcChange={setSrcChange}/>
+    {/* <div id="header"></div> */}
+    <div id="homeDisplay">
+      {homeOrPlaylist ? <PrimaryDisplay songSetter={setCurrentSong} setSrcChange={setSrcChange}/> : <TempComp />}
+      
     </div>
     <div id="bottom-bar">
       <AudioPlayer musicArray={currentSongs} srcChange={srcChange} setSrcChange={setSrcChange} isPlaying={isPlaying} setPlaying={setPlaying}/>
