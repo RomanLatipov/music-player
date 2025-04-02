@@ -7,14 +7,16 @@ export default function Discover({songSetter, setSrcChange}) {
     useEffect(() => {
         fetch("http://localhost:3000/songs")
         .then(res => res.json())
-        .then(data => setArrayOfSongs(data))
+        .then(data => {
+            setArrayOfSongs(data);
+            setDisplaySongs(data);
+        })
     }, [])
     
     function handleSearch(name) {
-        const temp = arrayOfSongs.filter(song => song.title.toLowerCase().includes(name.toLowerCase()));
-        setDisplaySongs(temp);
+        const search = arrayOfSongs.filter(song => song.title.toLowerCase().includes(name.toLowerCase()));
+        setDisplaySongs(search);
     }
-
 
     const songs = displaySongs.map(song => <Song title={song.title} songSetter={songSetter} setSrcChange={setSrcChange}/>)
     return(<>

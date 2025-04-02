@@ -90,7 +90,7 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
 
     return(<>
         <audio id="audio" onLoadedData={() => setTime(setEndTime, audio.duration)} onEnded={() => nextSong(index+1)} onTimeUpdate={() => timeupdate()}>
-            <source src={`songs/${musicArray[0]}.mp3`}></source> 
+            <source src={`/songs/${musicArray[0]}.mp3`}></source> 
         </audio>
     	<div className="player">
             <button onClick={() => prevSong(index-1)}>

@@ -15,8 +15,9 @@ function App() {
     <>
     <div id="sidebar">
       <button onClick={() => setHomeOrPlaylist(true)}>Home</button>
+      <br></br>
       <button onClick={() => setHomeOrPlaylist(false)}>Playlists</button>
-      {/* <Playlist /> */}
+      <Playlist />
     </div>
     {/* <div id="header"></div> */}
     <div id="homeDisplay">
