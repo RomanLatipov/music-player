@@ -9,16 +9,11 @@ import { useState, useEffect } from "react"
 export default function PrimaryDisplay({songSetter, setSrcChange}) {
     const [navigate, setNavigate] = useState("home");
     const [arrayOfSongs, setArrayOfSongs] = useState([]);
-    // const [temp, setTemp] = useState("");
-    useEffect(() => {
-        fetch("http://localhost:3000/songs")
-        .then(res => res.json())
-        .then(data => setArrayOfSongs(data))
-    }, [])
+    
     
     return(<>
         <Navbar setNavigate={setNavigate} />
-        {(navigate === "home") ? <Home /> : (navigate === "discover") ? <Discover /> : <Eula />}
+        {(navigate === "home") ? <Home /> : (navigate === "discover") ? <Discover songSetter={songSetter} setSrcChange={setSrcChange} /> : <Eula />}
         {/* r<RenderSongs songsArray={arrayOfSongs} songSetter={songSetter} setSrcChange={setSrcChange}/> */}
     </>)
 }
