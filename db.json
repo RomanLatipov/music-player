@@ -5,7 +5,8 @@
       "title": "2241",
       "artist": "Danger",
       "genres": [
-        "edm", "rock"
+        "edm",
+        "rock"
       ],
       "album_cover": ""
     },
@@ -14,7 +15,8 @@
       "title": "Crash 2.0",
       "artist": "Adventure Club",
       "genres": [
-        "edm", "house"
+        "edm",
+        "house"
       ],
       "album_cover": ""
     },
@@ -37,7 +39,8 @@
           "title": "2241",
           "artist": "Danger",
           "genres": [
-            "edm", "rock"
+            "edm",
+            "rock"
           ],
           "album_cover": ""
         },
@@ -60,7 +63,8 @@
           "title": "Crash 2.0",
           "artist": "Adventure Club",
           "genres": [
-            "edm", "house"
+            "edm",
+            "house"
           ],
           "album_cover": ""
         }
