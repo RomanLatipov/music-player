@@ -33,7 +33,6 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
         }
     }
     function loadSong(songId) {
-        // const audio = document.querySelector("#audio");
         audio.src = `/songs/${musicArray[songId]}.mp3`;
 	    audio.load();
         switchTrack();

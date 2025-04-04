@@ -42,11 +42,12 @@
   grid-row: 1;
 }
 #bottom-bar{
-  background-color: green;
+  background-color: #101727;
   height: 10vh;
   width: 100vw;
   grid-row: 2;
   display: flex;
   align-items: center;
+  color: white;
   /* justify-content: center; */
 }

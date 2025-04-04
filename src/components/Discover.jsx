@@ -18,7 +18,7 @@ export default function Discover({songSetter, setSrcChange}) {
         setDisplaySongs(search);
     }
 
-    const songs = displaySongs.map(song => <Song title={song.title} songSetter={songSetter} setSrcChange={setSrcChange}/>)
+    const songs = displaySongs.map(song => <Song song={song} songSetter={songSetter} setSrcChange={setSrcChange} button={<button style={{width: "160px"}}>Add to Playlist</button>}/>)
     return(<>
         <h1>This is Discover</h1>
         <input type="test" placeholder="Search..." onChange={event => handleSearch(event.target.value)}></input>
