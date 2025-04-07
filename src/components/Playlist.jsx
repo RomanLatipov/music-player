@@ -1,6 +1,6 @@
 export default function Playlist({playlist, setHomeOrPlaylist, setPlaylistId, handleDelete}) {
-    
-    const name = Object.keys(playlist)[1];
+
+    const name = playlist.name;
     const id = playlist.id;
  
     return(<>

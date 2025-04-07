@@ -3,7 +3,7 @@ import AudioPlayer from './components/AudioPlayer';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import DisplayPlaylists from './components/DisplayPlaylists';
 import RenderPlaylists from './components/RenderPlaylists';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [currentSongs, setCurrentSong] = useState([]);
@@ -11,6 +11,20 @@ function App() {
   const [isPlaying, setPlaying] = useState(false);
   const [homeOrPlaylist, setHomeOrPlaylist] = useState(true);
   const [playlistId, setPlaylistId] = useState("");
+
+
+  const song = [
+    {
+      "id": "2",
+      "title": "Crash 2.0",
+      "artist": "Adventure Club",
+      "genres": [
+        "edm",
+        "house"
+      ],
+      "album_cover": ""
+    }
+  ]
 
   return (<>
     <div id="sidebar">

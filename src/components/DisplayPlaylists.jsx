@@ -11,6 +11,7 @@ export default function DisplayPlaylists({setHomeOrPlaylist, setPlaylistId}) {
         .then(data => setPlaylists(data));
     }, [])
 
+    // console.log(playlists);
     // function hanleDisplayPlaylists(data) {
     //     setPlaylists(data);
     //     // const temp = data.map(d => Object.keys(d))
@@ -26,10 +27,8 @@ export default function DisplayPlaylists({setHomeOrPlaylist, setPlaylistId}) {
                     'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    [playlistName]: [
-                        {                          
-                        }
-                    ] 
+                    name: playlistName,
+                    songs: []
                 })
         })
         .then(res => res.json())
@@ -47,6 +46,8 @@ export default function DisplayPlaylists({setHomeOrPlaylist, setPlaylistId}) {
             setPlaylists(temp);
         })
     }
+
+    
 
     const display = playlists.map(playlist => <Playlist playlist={playlist} setHomeOrPlaylist={setHomeOrPlaylist} setPlaylistId={setPlaylistId} handleDelete={handleDelete}/>)
     return(<>
