@@ -62,21 +62,12 @@
           "album_cover": ""
         },
         {
-          "id": "2",
-          "title": "Crash 2.0",
-          "artist": "Adventure Club",
+          "id": "1",
+          "title": "2241",
+          "artist": "Danger",
           "genres": [
             "edm",
-            "house"
-          ],
-          "album_cover": ""
-        },
-        {
-          "id": "3",
-          "title": "Fly Away feat. Anjulie",
-          "artist": "TheFatRat",
-          "genres": [
-            "edm"
+            "rock"
           ],
           "album_cover": ""
         }

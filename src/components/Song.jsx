@@ -4,9 +4,9 @@ export default function Song({song, songSetter, setSrcChange, button}) {
     return(<>
         <div style={{background: "white", display: "flex", padding: "0.5rem"}}>
             <button onClick={() => {
-                    songSetter([song.title]);
-                    setSrcChange(true);
-                }}>{<span class="material-symbols-outlined">play_arrow</span>}
+                        songSetter([song.title]);
+                        setSrcChange(true);
+                    }}>{<span class="material-symbols-outlined">play_arrow</span>}
             </button>
             <div>
                 <h1>{song.title}</h1>
