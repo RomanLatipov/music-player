@@ -1,13 +1,11 @@
 import "./AudioPlayer.css"
 import { useState } from "react";
-export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlaying, setPlaying}) {
+export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlaying, setPlaying, index, setIndex}) {
     if (srcChange === true) {
-        loadSong(0);
+        loadSong(index);
         setSrcChange(false);
     }
-    // const musicArray = ["Danger - 2241", "Adventure Club vs DallasK - Crash 2.0", "TheFatRat - Fly Away feat. Anjulie"];
     
-    const [index, setIndex] = useState(0);
     const [currentTime, setCurrentTime] = useState("0:00");
     const [endTime, setEndTime] = useState("0:00");
     const [slider, setSlider] = useState(0);
@@ -15,9 +13,9 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
     const [volumeIcon, setVolumeIcon] = useState(`volume_down`);
     const [volumeMuted, setVolumeMuted] = useState(false);
     const [shuffle, setShuffle] = useState(false);
+    const [name, setName] = useState("name");
 
     function playSong() {
-        // const audio = document.querySelector("#audio");
         if (isPlaying === false) {
             audio.play();
             setPlaying(true);
@@ -33,7 +31,7 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
         }
     }
     function loadSong(songId) {
-        audio.src = `/songs/${musicArray[songId]}.mp3`;
+        audio.src = `/songs/${musicArray[songId].title}.mp3`;
 	    audio.load();
         switchTrack();
     }
@@ -88,10 +86,14 @@ export default function AudioPlayer({musicArray, srcChange, setSrcChange, isPlay
     }
 
     return(<>
-        <audio id="audio" onLoadedData={() => setTime(setEndTime, audio.duration)} onEnded={() => nextSong(index+1)} onTimeUpdate={() => timeupdate()}>
-            <source src={`/songs/${musicArray[0]}.mp3`}></source> 
+        <audio id="audio" onLoadedData={() => {
+            setTime(setEndTime, audio.duration)
+            setName(musicArray[index].title);
+        }} onEnded={() => nextSong(index+1)} onTimeUpdate={() => timeupdate()}>
+            <source src={""}></source> 
         </audio>
     	<div className="player">
+            <h1>{name}</h1>
             <button onClick={() => prevSong(index-1)}>
                 <span class="material-symbols-outlined">
                     fast_rewind

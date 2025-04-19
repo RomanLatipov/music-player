@@ -52,7 +52,7 @@
       "name": "test playlist",
       "songs": [
         {
-          "id": "1",
+          "id": "lv1raeaxto4pygi76v7",
           "title": "2241",
           "artist": "Danger",
           "genres": [
@@ -62,12 +62,11 @@
           "album_cover": ""
         },
         {
-          "id": "1",
-          "title": "2241",
-          "artist": "Danger",
+          "id": "lv1reywrlrn5ex14lc",
+          "title": "Fly Away feat. Anjulie",
+          "artist": "TheFatRat",
           "genres": [
-            "edm",
-            "rock"
+            "edm"
           ],
           "album_cover": ""
         }

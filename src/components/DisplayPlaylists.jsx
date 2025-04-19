@@ -47,11 +47,10 @@ export default function DisplayPlaylists({setHomeOrPlaylist, setPlaylistId}) {
         })
     }
 
-    
-
-    const display = playlists.map(playlist => <Playlist playlist={playlist} setHomeOrPlaylist={setHomeOrPlaylist} setPlaylistId={setPlaylistId} handleDelete={handleDelete}/>)
+    const display = playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} setHomeOrPlaylist={setHomeOrPlaylist} setPlaylistId={setPlaylistId} handleDelete={handleDelete}/>)
     return(<>
         <br></br>-----------------------<br></br>
+        <h1>Playlists</h1>
         <button onClick={() => {
             handlePost(playlistName);
         }}>Make Playlist</button>
