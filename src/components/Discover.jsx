@@ -1,3 +1,4 @@
+import "./Discover.css";
 import Song from "./Song";
 import List from "./List";
 import { useState, useEffect } from "react";
@@ -64,6 +65,8 @@ export default function Discover({songSetter, setSrcChange, setIndex, setPlaying
     return(<>
         <h1>This is Discover</h1>
         <input type="test" placeholder="Search..." onChange={event => handleSearch(event.target.value)}></input>
-        {songs}
+        <div id="songs">
+            {songs}
+        </div>
     </>)
 }
