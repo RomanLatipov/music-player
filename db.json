@@ -30,7 +30,7 @@
       "album_cover": ""
     },
     {
-      "id": "1",
+      "id": "4",
       "title": "2241",
       "artist": "Danger",
       "genres": [
@@ -40,7 +40,7 @@
       "album_cover": ""
     },
     {
-      "id": "2",
+      "id": "5",
       "title": "Crash 2.0",
       "artist": "Adventure Club",
       "genres": [
@@ -50,65 +50,7 @@
       "album_cover": ""
     },
     {
-      "id": "3",
-      "title": "Fly Away feat. Anjulie",
-      "artist": "TheFatRat",
-      "genres": [
-        "edm"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "1",
-      "title": "2241",
-      "artist": "Danger",
-      "genres": [
-        "edm",
-        "rock"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "2",
-      "title": "Crash 2.0",
-      "artist": "Adventure Club",
-      "genres": [
-        "edm",
-        "house"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "3",
-      "title": "Fly Away feat. Anjulie",
-      "artist": "TheFatRat",
-      "genres": [
-        "edm"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "1",
-      "title": "2241",
-      "artist": "Danger",
-      "genres": [
-        "edm",
-        "rock"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "2",
-      "title": "Crash 2.0",
-      "artist": "Adventure Club",
-      "genres": [
-        "edm",
-        "house"
-      ],
-      "album_cover": ""
-    },
-    {
-      "id": "3",
+      "id": "6",
       "title": "Fly Away feat. Anjulie",
       "artist": "TheFatRat",
       "genres": [

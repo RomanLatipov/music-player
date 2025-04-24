@@ -16,15 +16,12 @@ export default function Discover({songSetter, setSrcChange, setIndex, setPlaying
             setDisplaySongs(data);
             songSetter(data);
         })
-    }, [])
-
-    // console.log(displaySongs);
+    }, []);
 
     function handlePostToPlaylist(id, song){
         const uniqueId = () => {
             const dateString = Date.now().toString(36);
             const randomness = Math.random().toString(36).substr(2);
-            
             return dateString + randomness;
         };
         
@@ -59,6 +56,8 @@ export default function Discover({songSetter, setSrcChange, setIndex, setPlaying
         const search = arrayOfSongs.filter(song => song.title.toLowerCase().includes(name.toLowerCase()));
         setDisplaySongs(search);
     }
+    console.log(displaySongs);
+    
     // const test = playlists.map(list => <List id={list.id} name={list.name} handlePostToPlaylist={handlePostToPlaylist} song={song}/>)
     const songs = displaySongs.map(song => <Song key={song.id} song={song} index={displaySongs.indexOf(song)} setIndex={setIndex} setSrcChange={setSrcChange} setPlaying={setPlaying}
         button={playlists.map(list => <List id={list.id} name={list.name} handlePostToPlaylist={handlePostToPlaylist} song={song}/>)}/>)
