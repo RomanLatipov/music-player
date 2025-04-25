@@ -1,0 +1,10 @@
+.player {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+}
+
+/* #inline {
+    display: flex;
+    justify-content: center;
+} */
